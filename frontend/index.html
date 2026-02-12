@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Secure Multi-Tier Dockerized Web Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .container {
+      background: white;
+      color: black;
+      width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px 15px;
+      background: #2a5298;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1e3c72;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f1f1f1;
+      margin: 5px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Secure Multi-Tier Dockerized Web Application</h1>
+
+
+    <input id="msg" placeholder="Enter secure message">
+    <br>
+    <button onclick="save()">Store Data</button>
+
+    <h3>Stored Messages</h3>
+    <ul id="list"></ul>
+  </div>
+
+  <script>
+    function save() {
+      fetch("/api/save", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: document.getElementById("msg").value
+        })
+      }).then(load);
+    }
+
+    function load() {
+      fetch("/api/data")
+        .then(res => res.json())
+        .then(data => {
+          const list = document.getElementById("list");
+          list.innerHTML = "";
+          data.forEach(d => {
+            const li = document.createElement("li");
+            li.innerText = d.message;
+            list.appendChild(li);
+          });
+        });
+    }
+
+    load();
+  </script>
+
+</body>
+</html>
