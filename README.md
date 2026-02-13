@@ -144,13 +144,16 @@ docker network create backend-network
 docker network create monitoring-network
 
 🔹Step 2: Run MongoDB 
+
 docker run -d
 --name db
 --network backend-network
 mongo:latest
 
 🔹Step 3: Build & Run Backend 
+
 cd backend 
+
 docker build -t backend-app .
 
 docker run -d
@@ -161,10 +164,13 @@ backend-app
 Connect API to other networks:
 
 docker network connect frontend-network api 
+
 docker network connect monitoring-network api
 
 🔹 Step 4: Build & Run Frontend 
+
 cd ../frontend 
+
 docker build -t frontend-app .
 
 docker run -d
