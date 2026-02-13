@@ -140,12 +140,15 @@ docker network create frontend-network
 docker network create backend-network 
 docker network create monitoring-network
 
-🔹Step 2: Run MongoDB docker run -d
+🔹Step 2: Run MongoDB 
+docker run -d
 --name db
 --network backend-network
 mongo:latest
 
-🔹Step 3: Build & Run Backend cd backend docker build -t backend-app .
+🔹Step 3: Build & Run Backend 
+cd backend 
+docker build -t backend-app .
 
 docker run -d
 --name api
@@ -154,9 +157,12 @@ backend-app
 
 Connect API to other networks:
 
-docker network connect frontend-network api docker network connect monitoring-network api
+docker network connect frontend-network api 
+docker network connect monitoring-network api
 
-🔹 Step 4: Build & Run Frontend cd ../frontend docker build -t frontend-app .
+🔹 Step 4: Build & Run Frontend 
+cd ../frontend 
+docker build -t frontend-app .
 
 docker run -d
 --name ui
@@ -193,6 +199,7 @@ grafana/grafana
 👩‍💻 Author
 
 Uma Pathade
- Docker | DevOps |AWS | Terraform |  Linux | Cloud Enthusiast
+
+Docker | DevOps |AWS | Terraform |  Linux | Cloud Enthusiast
 
 ⭐ If you found this project helpful, consider starring the repository!
