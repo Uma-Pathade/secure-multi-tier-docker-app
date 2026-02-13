@@ -134,10 +134,13 @@ When messages are saved from frontend, CPU metrics change and can be visualized 
 
 
 🚀 How to Run This Project
+
 🔹 Step 1: Create Networks 
 
 docker network create frontend-network 
+
 docker network create backend-network 
+
 docker network create monitoring-network
 
 🔹Step 2: Run MongoDB 
@@ -171,6 +174,7 @@ docker run -d
 frontend-app
 
 🔹Step 5: Run Prometheus
+
 docker run -d \
   --name prometheus \
   --network monitoring-network \
@@ -178,7 +182,9 @@ docker run -d \
   -v ~/multi-tier-app/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
   prom/prometheus
 
-🔹 Step 6: Run Grafana docker run -d
+🔹 Step 6: Run Grafana 
+
+docker run -d
 --name grafana
 --network monitoring-network
 -p 3000:3000
